@@ -25,12 +25,7 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: ng deploy
+        run: npm run build --prod
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/test-gh-pages
-          user_name: 'ilyavtln'
-          user_email: 'owtf086@gmail.com'
+        run: npx angular-cli-ghpages --repo=https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ilyavtln/test-gh-pages.git --name="ilyavtln" --email="owtf086@gmail.com"
