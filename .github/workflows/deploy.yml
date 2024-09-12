@@ -25,7 +25,4 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build --prod
-
-      - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --repo=https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ilyavtln/test-gh-pages.git --name="ilyavtln" --email="owtf086@gmail.com"
+        run: ng deploy
