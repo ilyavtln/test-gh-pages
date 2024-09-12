@@ -106,7 +106,9 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "buildTarget": "test-gh-pages:build:production"
+            "buildTarget": "test-gh-pages:build:production",
+            "repo": "https://github.com/ilyavtln/test-gh-pages.git",
+            "baseHref": "/test-gh-pages/"
           }
         }
       }
