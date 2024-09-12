@@ -42,5 +42,15 @@ jobs:
     needs: deploy
 
     steps:
-      - name: Echo success
-        run: echo "::notice title=Deployment Complete::Website deployed! Visit it at https://ilyavtln.github.io/test-gh-pages"
+      - name: Report build status
+        run: echo "::notice title=Build and Deploy Status::The build and deploy process is completed."
+
+  display-deployment-link:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Display deployment link
+        run: |
+          DEPLOYMENT_URL="https://ilyavtln.github.io/test-gh-pages/"
+          echo "::notice title=Deployment Complete::Website deployed! Visit it at $DEPLOYMENT_URL"
