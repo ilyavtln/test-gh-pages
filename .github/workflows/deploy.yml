@@ -1,4 +1,4 @@
-name: Deploy Angular App
+name: Deploy Angular Project
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - release
 
 jobs:
-  setup:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,45 +21,18 @@ jobs:
         with:
           node-version: '22'
 
-  install:
-    runs-on: ubuntu-latest
-    needs: setup
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
       - name: Install dependencies
         run: npm install
-
-  configurate:
-    runs-on: ubuntu-latest
-    needs: install
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
       - name: Configure git
         run: |
           git config --global user.email "owtf086@gmail.com"
           git config --global user.name "ilyavtln"
 
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    needs: configurate
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-
-      - name: Deploy to GitHub Pages
+      - name: Build project
         run: ng deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Show deployment link
-        run: echo "::notice title=Deployment Complete::Website deployed! Visit it at [https://ilyavtln.github.io/test-gh-pages](https://ilyavtln.github.io/test-gh-pages)"
