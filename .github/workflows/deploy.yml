@@ -36,3 +36,6 @@ jobs:
         run: ng deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show deployment link
+        run: echo "::notice title=Deployment Complete::Website deployed! Visit it at [https://ilyavtln.github.io/test-gh-pages](https://ilyavtln.github.io/test-gh-pages)"
