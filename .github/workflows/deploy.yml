@@ -34,3 +34,5 @@ jobs:
 
       - name: Build project
         run: ng deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
