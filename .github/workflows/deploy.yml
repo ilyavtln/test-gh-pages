@@ -36,3 +36,21 @@ jobs:
         run: ng deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  report-build-status:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Report build status
+        run: |
+          echo "Build and deploy process completed."
+          echo "Check the deployment at: https://ilyavtln.github.io/test-gh-pages"
+
+  display-link:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Display deployment link
+        run: echo "::notice title=Deployment Complete::Website deployed! Visit it at [https://ilyavtln.github.io/test-gh-pages](https://ilyavtln.github.io/test-gh-pages)"
